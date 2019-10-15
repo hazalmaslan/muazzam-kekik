@@ -1,0 +1,8 @@
+appdirs==1.4.3
+attrs==19.2.0
+black==19.3b0
+certifi==2019.9.11
+Click==7.0
+freetype-py==2.1.0.post1
+pygame==1.9.6
+toml==0.10.0
