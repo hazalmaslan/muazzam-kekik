@@ -21,6 +21,16 @@ screen.blit(text, ((displayInfo.current_w - text.get_width()) // 2, 0))
 # Draw the gameframe
 
 
+# Draw the paddle
+paddle_color = (235, 235, 235) # Light Grey
+
+    # Paddle sizes
+x, y = 120, 40
+vel = 5
+x_start = 50
+y_start = displayInfo.current_h - 75
+pygame.draw.rect(screen, paddle_color, (x_start, y_start, x, y))
+
 # Event listener loop
 while True:
     for event in pygame.event.get():
@@ -29,9 +39,23 @@ while True:
         ):
             pygame.quit()
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONUP:
-            pass
-            # implement mouse handling here
 
+
+    key = pygame.key.get_pressed()
+
+    if key[pygame.K_RIGHT]:
+        if(x_start + 170 < displayInfo.current_w):
+            vel = 5
+            x_start += vel
+            
+    if key[pygame.K_LEFT]:
+        if(x_start > 50):  
+            vel = -5
+            x_start += vel
+           
+    
+    screen.fill((35, 35, 35))
+    pygame.draw.rect(screen, paddle_color, (x_start, y_start, x, y))
+  
     pygame.display.update()
     clock.tick(45)
