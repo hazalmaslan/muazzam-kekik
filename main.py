@@ -20,6 +20,19 @@ screen.blit(text, ((displayInfo.current_w - text.get_width()) // 2, 0))
 
 # Draw the gameframe
 
+# Draw the bricks
+bricks = []
+brick_color = (255, 255, 255)
+row_num = 8
+col_num = 5 
+offset_x = (displayInfo.current_w - row_num * 120) / 2
+offset_y = 20
+for row in range(row_num):
+    for col in range(col_num):
+        bricks.append(pygame.Rect(row*120 + offset_x, col*35 + offset_y, 100, 30))
+
+for brick in bricks:
+    pygame.draw.rect(screen, brick_color, brick)
 
 # Draw the paddle
 paddle_color = (235, 235, 235) # Light Grey
@@ -56,6 +69,8 @@ while True:
     
     screen.fill((35, 35, 35))
     pygame.draw.rect(screen, paddle_color, (x_start, y_start, x, y))
+    for brick in bricks:
+        pygame.draw.rect(screen, (255, 255, 255), brick)
   
     pygame.display.update()
     clock.tick(45)
